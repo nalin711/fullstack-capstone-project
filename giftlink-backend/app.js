@@ -7,6 +7,8 @@ const pinoLogger = require('./logger');
 const connectToDatabase = require('./models/db');
 const {loadData} = require("./util/import-mongo/index");
 
+const authRoutes = require('./routes/authRoutes');
+
 
 const app = express();
 app.use("*",cors());
@@ -41,7 +43,8 @@ app.use('/api/gifts/', giftRoutes)
 // Search API Task 2: add the searchRoutes to the server by using the app.use() method.
 app.use('/api/search', searchRoutes);
 
-
+// USe authRoutes from /api/auth
+app.use('/api/auth', authRoutes);
 // Global Error Handler
 app.use((err, req, res, next) => {
     console.error(err);
