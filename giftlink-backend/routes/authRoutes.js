@@ -75,7 +75,9 @@ router.post('/login', async(req, res) => {
                 },
             };
             jwt.sign(user._id, JWT_SECRET)
-            res.json({authtoken, userName, userEmail });
+            //res.json({authtoken, userName, userEmail });
+            logger.info('User logged in successfully');
+            return res.status(200).json({ authtoken, userName, userEmail });
         } else { // Task 7: Send appropriate message if user not found
             logger.error('User not found');
             return res.status(404).json({ error: 'User not found' });
